@@ -1,0 +1,23 @@
+# <process> <sample name> <weight>
+
+# SIGNALS
+# ttHH
+ttHH ttHH 0.00000109
+
+# BACKGROUNDS
+# ttZHto4b
+ttZHto4b ttZHto4b 0.000000188
+
+# ttZZto4b
+ttZZto4b ttZZto4b 0.00000055
+
+# tt4b
+tt4b tt4b 0.0013
+
+# ttHtobb
+ttHtobb ttHtobb 0.00156
+
+# QCD
+# QCD is applied the weight already
+# So set the weight value as 1
+QCD QCD 1.0

@@ -1,0 +1,46 @@
+
+These are the scripts for CutLang run on condor batch jobs and make plots
+
+-- pre-requisition
+  --> CMSSW_12_6_5
+  --> voms proxy in current working directory as the name [ proxy.cert ]
+
+
+1. Running
+
+-- RunCutLangBatchJob_v<version-number>.py : Runs the list of samples given in [samplelist] directory on condor.
+  --> Before run this script, please make proxy using following comand:
+        $ voms-proxy-init -voms cms -out proxy.cert -valid 48:00
+  --> If you want you can change the proxy life time to change valid option.
+      But, You must not change the [ -out proxy.cert ] option.
+  --> When you run this script, the [ WorkDir_job_<jobID> ] will be created.
+      In this directory, you can find condor_sub script and execution script for condor.
+      And also log directory.   
+
+-- samplelist : You need to put samples list as txt file
+In this directory, there is [ SampleListMaker.py ]. This is the script for make sample list using das query with data-set address
+
+
+2. Plotting
+
+-- [ plotting_code ] directory
+  --> In this directory you can find plotting script [ Plotting_v1.py ].
+      And configuration file [ Config_forPlotting_v1.txt ] for plotting.
+  --> [ QCDmerger_With_Weight.py ] will help you to merge QCD histogram with calculated weight.
+
+
+
+Better commented versions of the below scripts are in jupyter notebook format here:
+https://github.com/unelg/CutLang/tree/master/binder
+
+-- compareplots.py : Compare signal with a background. The plots are weighted.
+One can also adjust weights to 1 to do shape comparison.
+Better commented version:
+https://github.com/unelg/CutLang/blob/master/binder/ROOTweightedcomparison.ipynb
+In github, there is also a simple shape comparison script, from the previous year's exercise
+https://github.com/unelg/CutLang/blob/master/binder/ROOTshapecomparison.ipynb
+
+-- fullplots.py : Makes weighted plots for signal(s), BG and data.
+Better commented version:
+https://github.com/unelg/CutLang/blob/master/binder/ROOTallprocsweighted.ipynb
+

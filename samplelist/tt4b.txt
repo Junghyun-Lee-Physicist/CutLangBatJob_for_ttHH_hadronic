@@ -1,0 +1,14 @@
+/eos/cms/store/user/gsokmen/tt4b/08E10551-0579-6944-B4DD-E6A2DEF05973.root
+/eos/cms/store/user/gsokmen/tt4b/0A1538E1-D3C9-9440-9EB6-667467AC8322.root
+/eos/cms/store/user/gsokmen/tt4b/2A2E89CA-05CE-F848-B9B9-6AAB41091B8F.root
+/eos/cms/store/user/gsokmen/tt4b/3381FD34-CB15-3144-AD21-8D947027684B.root
+/eos/cms/store/user/gsokmen/tt4b/474E5845-99C6-2848-A073-8116CB664B6B.root
+/eos/cms/store/user/gsokmen/tt4b/5B347590-B572-1545-B1F0-0BCE01A13407.root
+/eos/cms/store/user/gsokmen/tt4b/680372A6-A0B7-CF43-9CC2-0BF71D146CF2.root
+/eos/cms/store/user/gsokmen/tt4b/D6362AC1-0700-3C4B-999E-7BAF1560631B.root
+/eos/cms/store/user/gsokmen/tt4b/D9FB0A8B-51DB-3049-850A-C26C481E4450.root
+/eos/cms/store/user/gsokmen/tt4b/EF6000D1-751A-A84B-A178-04C4E2E6FDA8.root
+/eos/cms/store/user/gsokmen/tt4b/F2ABFD1F-5D1E-0F42-A951-6544A5F50885.root
+/eos/cms/store/user/gsokmen/tt4b/F385F896-5644-C543-AACF-9C47E4B490C3.root
+/eos/cms/store/user/gsokmen/tt4b/F8EEBBA6-11BC-364E-B1DB-22D87E683103.root
+/eos/cms/store/user/gsokmen/tt4b/FD52BC49-9435-0541-AD57-EBD09921D69B.root
