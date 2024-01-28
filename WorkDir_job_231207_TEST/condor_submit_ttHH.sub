@@ -1,0 +1,10 @@
+x509userproxy         = /afs/cern.ch/user/j/junghyun/ttHH_analysis/CMSSW_12_6_5/src/ttHH_CLbatch_public/proxy.cert
+executable            = run_ttHH.sh
+getenv                = True
+arguments             = $(samplelist) $(ClusterId) $(ProcId)
+output                = logForJob_231207_TEST/output/ttHH_$(ClusterId).$(ProcId).out
+error                 = logForJob_231207_TEST/error/ttHH_$(ClusterId).$(ProcId).err
+log                   = logForJob_231207_TEST/log/ttHH_$(ClusterId).log
+should_transfer_files = IF_NEEDED
++JobFlavour = "microcentury"
+queue samplelist from /afs/cern.ch/user/j/junghyun/ttHH_analysis/CMSSW_12_6_5/src/ttHH_CLbatch_public/samplelist/ttHH.txt

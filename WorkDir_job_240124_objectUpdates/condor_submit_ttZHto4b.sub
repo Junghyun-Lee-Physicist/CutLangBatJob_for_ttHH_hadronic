@@ -1,0 +1,10 @@
+x509userproxy         = /afs/cern.ch/user/j/junghyun/ttHH_analysis/test/CMSSW_12_6_5/src/ttHH_CLbatch_public/proxy.cert
+executable            = run_ttZHto4b.sh
+getenv                = True
+arguments             = $(samplelist) $(ClusterId) $(ProcId)
+output                = logForJob_240124_objectUpdates/output/ttZHto4b_$(ClusterId).$(ProcId).out
+error                 = logForJob_240124_objectUpdates/error/ttZHto4b_$(ClusterId).$(ProcId).err
+log                   = logForJob_240124_objectUpdates/log/ttZHto4b_$(ClusterId).log
+should_transfer_files = IF_NEEDED
++JobFlavour = "tomorrow"
+queue samplelist from /afs/cern.ch/user/j/junghyun/ttHH_analysis/test/CMSSW_12_6_5/src/ttHH_CLbatch_public/samplelist/ttZHto4b.txt

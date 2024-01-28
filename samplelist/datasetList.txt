@@ -1,0 +1,25 @@
+2017 RUNII luminocity of CERN CMS : 41.48 fb^{-1}
+
+- signal -
+
+  - ttHH -
+  /TTHHTo4b_TuneCP5_13TeV-madgraph-pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v2/NANOAODSIM
+  #ofEvt : 9934000
+  XS : 0.0006676 
+
+- background -
+
+  - tt(5FS, hadronic decay) - 
+  /TTToHadronic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v1/NANOAODSIM
+  #ofEvt : 
+
+  - ttbb(4FS, hadronic decay) -
+  /TTbb_4f_TTToHadronic_TuneCP5-Powheg-Openloops-Pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v1/NANOAODSIM
+  
+  - ttbb(4FS, hdamp down) -
+  /TTbb_4f_TTToHadronic_hdampDOWN_TuneCP5-Powheg-Openloops-Pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v1/NANOAODSIM
+
+  - ttbb(4FS, hdamp up) -
+  /TTbb_4f_TTToHadronic_hdampUP_TuneCP5-Powheg-Openloops-Pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v1/NANOAODSIM
+
+  

@@ -8,7 +8,7 @@ import shutil
 # User define configuration
 # Please fill the below variables
 
-JobID = "231207" # Whatever ID you want
+JobID = "231207_TEST" # Whatever ID you want
 CutLang_path = os.path.abspath("../CutLang")
 SampleType = "CMSNANO"
 CutLangExeScriptName = "CLA1" # This file is in [ script_forRunCL ] directory

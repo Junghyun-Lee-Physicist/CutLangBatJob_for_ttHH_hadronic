@@ -192,7 +192,8 @@ for hinfo in histoinfos:
             nbins = 0
             for i in range(1, hbgi.GetXaxis().GetNbins() + 1):
                 binLabel = hbgi.GetXaxis().GetBinLabel(i)
-                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                ##if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
                     nbins = nbins + 1
             hbginew = TH1D(hbgi.GetName() + str(random.random()), hbgi.GetTitle(), nbins, 0, nbins)
             ibin = 0
@@ -200,11 +201,17 @@ for hinfo in histoinfos:
                 label = hbgi.GetXaxis().GetBinLabel(i)
                 binLabel = label
                 ##if not ("Histo" in label or "ALL" in label):
-                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                ##if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
                     ibin = ibin + 1
                     hbginew.GetXaxis().SetBinLabel(ibin, label)
                     hbginew.SetBinContent(ibin, hbgi.GetBinContent(i))
             hbgi = hbginew
+
+        if hname == "histo_njets" or "histo_nbjets" or "histo_nljets":
+            xaxis = hbgi.GetXaxis()
+            xaxis.SetTitle("number of jets")
+
 
         # set for stack plot
         hbgi.SetLineColor(col)
@@ -230,7 +237,8 @@ for hinfo in histoinfos:
 
                 binLabel = hsg.GetXaxis().GetBinLabel(i)
                 ##if not ("Histo" in binLabel or "ALL" in binLabel):
-                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                ##if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
                     nbins = nbins + 1
             hsgnew = TH1D(hsg.GetName() + str(random.random()), hsg.GetTitle(), nbins, 0, nbins)
             ibin = 0
@@ -238,7 +246,8 @@ for hinfo in histoinfos:
                 label = hsg.GetXaxis().GetBinLabel(i)
                 binLabel = label
                 ##if not ("Histo" in label or "ALL" in label):
-                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                ##if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2HH" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
+                if not ("Histo" in binLabel or "ALL" in binLabel or "bjets_forZZreco" in binLabel or "bjets_forZHreco" in binLabel or "chi2ZZ" in binLabel or "chi2ZH" in binLabel):
                     ibin = ibin + 1
                     hsgnew.GetXaxis().SetBinLabel(ibin, label)
                     hsgnew.SetBinContent(ibin, hsg.GetBinContent(i))
@@ -248,6 +257,8 @@ for hinfo in histoinfos:
         leg.AddEntry(hsg, sg, "l")
         hsgs.append(hsg)
 
+
+
     # Find the maximum
     mxm = max(hbg.GetMaximum(), hsgs[0].GetMaximum()) *1.2 ####
     ####mim = min(hbg.GetMinimum(), hsgs[0].GetMinimum()) *0.9 
@@ -256,8 +267,31 @@ for hinfo in histoinfos:
     hsgs[0].SetTitle("")
     hsgs[0].SetMaximum(mxm) ####
     ####hsgs[0].SetMinimum(mim) ####
-    hsgs[0].GetXaxis().SetTitle(hbg.GetTitle())
-    hsgs[0].GetXaxis().SetTitleOffset(1.25)
+  
+    ####hsgs[0].GetXaxis().SetTitle(hbg.GetTitle())
+    ##if hname == "histo_njets" or "histo_nbjets" or "histo_nljets":
+    ##   hsgs[0].GetXaxis().SetTitle("number of jets")
+    ##if hname == "hjet01pt" or "hjet02pt" or "hjet03pt" or "hjet04pt" or "hjet05pt" or "hjet06pt":
+    ##   hsgs[0].GetXaxis().SetTitle("jet #pT")
+    ##if hname == "hjet01eta" or "hjet02eta" or "hjet03eta" or "hjet04eta" or "hjet05eta" or "hjet06eta":
+    ##   hsgs[0].GetXaxis().SetTitle("jet #eta")
+    if hname == "jetHT":
+       hsgs[0].GetXaxis().SetTitle("HT")
+    if hname == "jetBHT":
+       hsgs[0].GetXaxis().SetTitle("b-jet HT")
+   ## if hname == "hchi2HH":
+   ##    hsgs[0].GetXaxis().SetTitle("#chi^{2} of Higgs pair")
+    if hname == "hmH1cnd":
+       hsgs[0].GetXaxis().SetTitle("1st Higgs candidate mass")
+    if hname == "hmH2cnd":
+       hsgs[0].GetXaxis().SetTitle("2nd Higgs candidate mass")
+    ##else:
+    ##hsgs[0].GetXaxis().SetTitle(hbg.GetTitle())
+    ##hsgs[0].GetXaxis().SetTitle("#chi^{2} of Higgs pair")
+
+
+    ##hsgs[0].GetXaxis().SetTitleOffset(1.25)
+    hsgs[0].GetXaxis().SetTitleOffset(0.8)
     hsgs[0].GetXaxis().SetTitleSize(0.05)
     hsgs[0].GetXaxis().SetLabelSize(0.045)
     hsgs[0].GetXaxis().SetNdivisions(8, 5, 0)

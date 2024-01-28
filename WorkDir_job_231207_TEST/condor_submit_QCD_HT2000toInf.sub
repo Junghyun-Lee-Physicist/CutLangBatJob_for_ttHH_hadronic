@@ -1,0 +1,10 @@
+x509userproxy         = /afs/cern.ch/user/j/junghyun/ttHH_analysis/CMSSW_12_6_5/src/ttHH_CLbatch_public/proxy.cert
+executable            = run_QCD_HT2000toInf.sh
+getenv                = True
+arguments             = $(samplelist) $(ClusterId) $(ProcId)
+output                = logForJob_231207_TEST/output/QCD_HT2000toInf_$(ClusterId).$(ProcId).out
+error                 = logForJob_231207_TEST/error/QCD_HT2000toInf_$(ClusterId).$(ProcId).err
+log                   = logForJob_231207_TEST/log/QCD_HT2000toInf_$(ClusterId).log
+should_transfer_files = IF_NEEDED
++JobFlavour = "microcentury"
+queue samplelist from /afs/cern.ch/user/j/junghyun/ttHH_analysis/CMSSW_12_6_5/src/ttHH_CLbatch_public/samplelist/QCD_HT2000toInf.txt

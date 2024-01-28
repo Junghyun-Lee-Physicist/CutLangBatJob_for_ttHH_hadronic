@@ -16,8 +16,9 @@ def WeightCalculator(nOfEvt, xs):
     # formula like below:
     # [ weight = xs / nOfEvt ]
     # of course the [ integrated luminosity have to be multiplied but that thing will be applied at plotting code
-
-    weight = (49810.0 * xs) / nOfEvt # Integrated Luminosity of 2017
+ 
+    xs = xs*1000.0;
+    weight = (41.53 * xs) / nOfEvt # Integrated Luminosity of 2017 [ fb^-1 ]
     ##weight = (41529.0 * xs) / nOfEvt # Integrated Luminosity of 2017
 
     return weight
