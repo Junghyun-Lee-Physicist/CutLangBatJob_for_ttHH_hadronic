@@ -11,11 +11,11 @@ import shutil
 import sys
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
-config_dir = os.path.join(parent_dir, 'configuration')
-sys.path.append(config_dir)
+parser_dir = os.path.join(parent_dir, 'configuration_Parser')
+sys.path.append(parser_dir)
 from parser_for_configuration import ConfigParser
 
-config_file = os.path.join(config_dir, "configure.txt")
+config_file = os.path.join(current_dir, "configure_forBatchJob.txt")
 config_parser = ConfigParser( config_file )
 
 JobID = config_parser.batch_job_config.get("JobID")

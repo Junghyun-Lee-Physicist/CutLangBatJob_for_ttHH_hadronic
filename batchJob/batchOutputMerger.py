@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import subprocess
 
@@ -5,13 +7,15 @@ import subprocess
 import sys
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
-config_dir = os.path.join(parent_dir, 'configuration')
-sys.path.append(config_dir)
+parser_dir = os.path.join(parent_dir, 'configuration_Parser')
+sys.path.append(parser_dir)
 from parser_for_configuration import ConfigParser
 
 
+
 def main():
-    config_file = os.path.join(config_dir, "configure.txt")
+
+    config_file = os.path.join(current_dir, "configure_forBatchJob.txt")
     config_parser = ConfigParser( config_file )
 
     output_path = config_parser.output_merger_config.get("output_path")
@@ -26,10 +30,10 @@ def main():
         print(f"Merger directory {merger_obj_path} already exists.")
 
     # merger batch job output ROOT file every channel
-    print("===================================================")
+    print("=========================================================================")
     print(f"All channels are like below: ")
     print(channel_names)
-    print("===================================================")
+    print("=========================================================================")
     print("\nNow merger start")
     for channel in channel_names:
         channel_dir = os.path.join(output_path, channel)

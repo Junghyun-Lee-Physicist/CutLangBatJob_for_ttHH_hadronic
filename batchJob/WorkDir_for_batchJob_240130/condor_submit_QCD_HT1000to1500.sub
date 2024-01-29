@@ -1,0 +1,10 @@
+x509userproxy         = /afs/cern.ch/user/j/junghyun/ttHH_analysis/test/CMSSW_12_6_5/src/ttHH_CLbatch_public/batchJob/proxy.cert
+executable            = run_QCD_HT1000to1500.sh
+getenv                = True
+arguments             = $(samplelist) $(ClusterId) $(ProcId)
+output                = logForJob_240130/output/QCD_HT1000to1500_$(ClusterId).$(ProcId).out
+error                 = logForJob_240130/error/QCD_HT1000to1500_$(ClusterId).$(ProcId).err
+log                   = logForJob_240130/log/QCD_HT1000to1500_$(ClusterId).log
+should_transfer_files = IF_NEEDED
++JobFlavour = "tomorrow"
+queue samplelist from /afs/cern.ch/user/j/junghyun/ttHH_analysis/test/CMSSW_12_6_5/src/ttHH_CLbatch_public/samplelist/QCD_HT1000to1500.txt

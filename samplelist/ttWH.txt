@@ -1,0 +1,11 @@
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/260000/3E22D75D-3E3A-8B49-99E2-9C92B7A19F4D.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/260000/50D09B2C-6BBB-6643-AED7-7AFA22FC6079.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/270000/25F9D779-EABD-E34C-A335-ECB1897F94D4.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/270000/9D29AC22-AF51-FC44-8505-6BDBC7D1FA58.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/260000/7A5AB41D-C78F-4943-9532-42DF6243DE70.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/2520000/56C4CD96-96EF-DB4D-A61D-E711C2C62103.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/2530000/89591FF5-B89E-6249-9BDA-8129ECFF1117.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/270000/1C35B5CE-9881-0C40-982D-69854D54ACC7.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/260000/57376E81-39E9-1240-90C8-891D1AFEE0D3.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/2520000/99CF01DA-A97B-474E-8E7F-7BE446C15218.root
+root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTWH_TuneCP5_13TeV-madgraph-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/2540000/5C29A62A-1885-C54B-A1E2-C46D62F2E3B5.root
