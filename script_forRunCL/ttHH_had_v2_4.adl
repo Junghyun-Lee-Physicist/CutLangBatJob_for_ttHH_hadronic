@@ -187,3 +187,5 @@ region channelChi2
   ####histo hchi2ZH, "ZH Chi2 dis closest to 0", 40, 0, 5000, chi2ZH
   ####histo hmHcnd, "higgs Inv mass dis", 40, 0, 500, mHcnd
   ####histo hmZcnd, "Z Inv mass dis", 40, 0, 500, mZcnd
+
+  save ttHHcsv csv pT(jets[0]) pT(jets[1]) pT(jets[2]) pT(jets[3]) pT(jets[4]) pT(jets[5]) pT(jets[0]) pT(bjets[1]) pT(bjets[2]) pT(bjets[3]) Eta(jets[0]) Eta(jets[1]) Eta(jets[2]) Eta(jets[3]) Eta(jets[4]) Eta(jets[5]) Eta(jets[0]) Eta(bjets[1]) Eta(bjets[2]) Eta(bjets[3]) HT BHT chi2HH mH1cnd mH2cnd

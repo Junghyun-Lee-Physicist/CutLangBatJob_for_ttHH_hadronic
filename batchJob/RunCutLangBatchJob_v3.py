@@ -143,9 +143,15 @@ ClusterId=$2
 ProcId=$3
 mkdir "workDir" && cd "workDir"
 {CutLang_cmd}
+
 NewOutputName=\"histoOut-{channel}_$ClusterId_$ProcId.root\"
 mv histoOut-{ADLScriptName}.root $NewOutputName
 xrdcp -r -f $NewOutputName \"{outputDir_XRootD_Protocol_path}\"
+
+NewCsvName=\"{channel}_table_$ClusterId_$ProcId.csv\"
+mv ttHHcsv.csv $NewCsvName
+xrdcp -r -f $NewCsvName \"{outputDir_XRootD_Protocol_path}\"
+
 cd ..
 rm -rf "workDir"
 '''
