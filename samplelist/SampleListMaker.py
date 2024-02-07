@@ -43,10 +43,10 @@ def get_dataset_file_list(dataset_name, output_file):
 
 
 # Replace with your dataset name
-dataset_name = "/TTTT_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v2/NANOAODSIM"
+dataset_name = "/TTToHadronic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v1/NANOAODSIM"
 
 # Replace with your desired output file name
-output_file = "tttt.txt"
+output_file = "ttTohadronic.txt"
 
 # Call function
 get_dataset_file_list(dataset_name, output_file)
