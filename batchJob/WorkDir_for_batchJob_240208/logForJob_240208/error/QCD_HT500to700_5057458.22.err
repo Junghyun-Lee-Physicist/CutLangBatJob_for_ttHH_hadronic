@@ -1,0 +1,5 @@
+Error in <TFile::TFile>: file /pool/condor/dir_2685150/workDir/histoOut-BP_*.root does not exist
+Error in <TFileMerger::AddFile>: cannot open file /pool/condor/dir_2685150/workDir/histoOut-BP_*.root
+hadd exiting due to error in /pool/condor/dir_2685150/workDir/histoOut-BP_*.root
+mv: cannot stat 'ttHHcsv.csv': No such file or directory
+xrdcp: no such file or directory processing QCD_HT500to700_table_22.csv

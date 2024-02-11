@@ -14,6 +14,35 @@ def main():
     config_parser = ConfigParser( config_file )
     scale_batch_job_outputs(config_parser)
 
+
+def trim_cutflow_Xlables(oldCutflow):
+    # Extract bin labels, contents, and errors from the original histogram into a list.
+    bins_data = [{
+        'label' : oldCutflow.GetXaxis().GetBinLabel(bin),
+        'content' : oldCutflow.GetBinContent(bin),
+        'error' : oldCutflow.GetBinError(bin)
+        }for bin in range(1, oldCutflow.GetNbinsX() + 1)]
+
+    # Filter out the bins that contain labels to be removed.
+    unwanted_phrase_inCutflowbins = ["ALL", "Histo", "Save"]
+    filtered_bins_data = [
+            bin_data for bin_data in bins_data
+            if not any(phrase in bin_data['label'] for phrase in unwanted_phrase_inCutflowbins)
+            ]
+
+    # Create a new histogram.
+    trimmed_hist = ROOT.TH1D(oldCutflow.GetName(), oldCutflow.GetTitle(),
+            len(filtered_bins_data),0,len(filtered_bins_data))
+
+    # Fill the new histogram with the filtered data.
+    for i, bin_data in enumerate(filtered_bins_data, start=1):
+        trimmed_hist.GetXaxis().SetBinLabel(i, bin_data['label'])
+        trimmed_hist.SetBinContent(i, bin_data['content'])
+        trimmed_hist.SetBinError(i, bin_data['error'])
+
+    return trimmed_hist
+
+
 def scale_batch_job_outputs(config):
     scaler_config = config.batch_job_output_scaler_config
     mergerObj = scaler_config.get("mergerObj")
@@ -65,10 +94,17 @@ def scale_batch_job_outputs(config):
                 for hist_key in ROOT.TIter(input_dir.GetListOfKeys()):
                     obj = hist_key.ReadObj()
                     if obj.InheritsFrom("TH1"):
-                        print(f"Scaling histogram: {obj.GetName()}")
-                        obj.Sumw2()
-                        obj.Scale(weight)
-                        obj.Write()
+                        if "cutflow" in obj.GetName():
+                            print(f"Processing and trimming cutflow histogram: {obj.GetName()}")
+                            trimmed_hist = trim_cutflow_Xlables(obj)
+                            trimmed_hist.Sumw2()
+                            trimmed_hist.Scale(weight)
+                            trimmed_hist.Write()
+                        else:
+                            print(f"Scaling histogram: {obj.GetName()}")
+                            obj.Sumw2()
+                            obj.Scale(weight)
+                            obj.Write()
 
         input_file.Close()
         output_file.Close()

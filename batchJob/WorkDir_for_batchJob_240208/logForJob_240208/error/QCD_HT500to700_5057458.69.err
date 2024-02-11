@@ -1,0 +1,78 @@
+Error in <TNetXNGFile::Open>: [ERROR] Invalid redirect URL
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 6 (Thread 0x14adf75fb640 (LWP 344) "CLA.exe"):
+#0  0x000014ae1029c39a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x000014ae102a7838 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x000014adf7ff03e6 in XrdCl::JobManager::RunJobs() () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#3  0x000014adf7ff04a9 in RunRunnerThread () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#4  0x000014ae1029f802 in start_thread () from /lib64/libc.so.6
+#5  0x000014ae1023f450 in clone3 () from /lib64/libc.so.6
+
+Thread 5 (Thread 0x14adf77fc640 (LWP 343) "CLA.exe"):
+#0  0x000014ae1029c39a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x000014ae102a7838 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x000014adf7ff03e6 in XrdCl::JobManager::RunJobs() () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#3  0x000014adf7ff04a9 in RunRunnerThread () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#4  0x000014ae1029f802 in start_thread () from /lib64/libc.so.6
+#5  0x000014ae1023f450 in clone3 () from /lib64/libc.so.6
+
+Thread 4 (Thread 0x14adf79fd640 (LWP 342) "CLA.exe"):
+#0  0x000014ae1029c39a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x000014ae102a7838 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x000014adf7ff03e6 in XrdCl::JobManager::RunJobs() () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#3  0x000014adf7ff04a9 in RunRunnerThread () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#4  0x000014ae1029f802 in start_thread () from /lib64/libc.so.6
+#5  0x000014ae1023f450 in clone3 () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x14adf7bfe640 (LWP 341) "CLA.exe"):
+#0  0x000014ae10313975 in clock_nanosleep
+GLIBC_2.2.5 () from /lib64/libc.so.6
+#1  0x000014ae10318527 in nanosleep () from /lib64/libc.so.6
+#2  0x000014adf852d17f in XrdSysTimer::Wait(int) () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdUtils.so.3
+#3  0x000014adf7f5e1e3 in XrdCl::TaskManager::RunTasks() () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#4  0x000014adf7f5e339 in RunRunnerThread () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdCl.so.3
+#5  0x000014ae1029f802 in start_thread () from /lib64/libc.so.6
+#6  0x000014ae1023f450 in clone3 () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x14adf7dff640 (LWP 340) "CLA.exe"):
+#0  0x000014ae1034e84e in epoll_wait () from /lib64/libc.so.6
+#1  0x000014adf8527632 in XrdSys::IOEvents::PollE::Begin(XrdSysSemaphore*, int&, char const**) () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdUtils.so.3
+#2  0x000014adf8523dbd in XrdSys::IOEvents::BootStrap::Start(void*) () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdUtils.so.3
+#3  0x000014adf852c888 in XrdSysThread_Xeq () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libXrdUtils.so.3
+#4  0x000014ae1029f802 in start_thread () from /lib64/libc.so.6
+#5  0x000014ae1023f450 in clone3 () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x14ae10416f00 (LWP 317) "CLA.exe"):
+#0  0x000014ae1031830f in wait4 () from /lib64/libc.so.6
+#1  0x000014ae10261953 in do_system () from /lib64/libc.so.6
+#2  0x000014ae122f5d1b in TUnixSystem::StackTrace() () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libCore.so
+#3  0x000014ae122f32b5 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/cms.cern.ch/el8_amd64_gcc10/cms/cmssw/CMSSW_12_6_5/external/el8_amd64_gcc10/lib/libCore.so
+#4  <signal handler called>
+#5  0x0000000000453275 in main (argc=<optimized out>, argv=0x7ffc0670b410) at CLA.C:202
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum https://root.cern.ch/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern.ch/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#5  0x0000000000453275 in main (argc=<optimized out>, argv=0x7ffc0670b410) at CLA.C:202
+===========================================================
+
+
+mv: cannot stat 'histoOut-ttHH_had_v2_6.root': No such file or directory
+xrdcp: no such file or directory processing histoOut-QCD_HT500to700_69.root
+mv: cannot stat 'ttHHcsv.csv': No such file or directory
+xrdcp: no such file or directory processing QCD_HT500to700_table_69.csv

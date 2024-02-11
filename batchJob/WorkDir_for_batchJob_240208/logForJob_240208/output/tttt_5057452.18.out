@@ -1,0 +1,325 @@
+[31mroot://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTTT_TuneCP5_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/260000/02151677-7D45-7940-803F-3FA5A101D504.root does not exist.
+(B[mAnalysis with Multiple Regions
+A region, ID:  0 named:            [presel] 	 is defined in lines from 1 to 8
+A region, ID:  1 named:[baselineForHTHisto] 	 is defined in lines from 8 to 14
+   this region depends on: presel
+A region, ID:  2 named: [baselineForWHisto] 	 is defined in lines from 14 to 21
+   this region depends on: presel
+A region, ID:  3 named:          [baseline] 	 is defined in lines from 21 to 28
+   this region depends on: presel
+A region, ID:  4 named:    [baselineHistos] 	 is defined in lines from 28 to 49
+   this region depends on: baseline
+A region, ID:  5 named:       [channelChi2] 	 is defined in lines from 49 to 75
+   this region depends on: baseline
+/afs/cern.ch/user/j/junghyun/ttHH_analysis/test/CMSSW_12_6_5/src/CutLang/CLA/CLA.exe root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTTT_TuneCP5_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/260000/02151677-7D45-7940-803F-3FA5A101D504.root -inp CMSNANO -BP 6 -EVT 0 -V 5000 -ST 0 -S 0 w
+CLA v2.50.0	compiled on Tue Jan 23 20:13:46 CET 2024	 
+Analysis run count is 6
+~Now using CMS NanoAOD files.~~~~~~ beta!
+Processing tree: Events	 Addr:0x476dc90
+Processing tree: LuminosityBlocks	 Addr:0x49034d0
+Processing tree: Runs	 Addr:0x477d700
+Processing tree: MetaData	 Addr:0x40645e0
+Processing tree: ParameterSets	 Addr:0x4055270
+open root://xrootd-cms.infn.it//store/mc/RunIISummer20UL17NanoAODv9/TTTT_TuneCP5_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v2/260000/02151677-7D45-7940-803F-3FA5A101D504.root
+RetVal:1
+initialized with the chain...330000
+ #systematic included:0
+	 REGION/ALGO:presel
+This is a run with name: nominal algo:presel.
+==Parsing started:
+           jetID is an NTUPLE variable for CMSNANO
+         jetPUid is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+ mvaFall17V2Iso_WP90 is an NTUPLE variable for CMSNANO
+  pfRelIso03_all is an NTUPLE variable for CMSNANO
+         tightId is an NTUPLE variable for CMSNANO
+  pfRelIso04_all is an NTUPLE variable for CMSNANO
+  Parsing finished.==
+We have 5 CutLang Cuts, 13 CutLang objects and 0 Bins
+TRGe:1  TRGm:0
+ => 0 BP_1
+	 REGION/ALGO:baselineForHTHisto
+This is a run with name: nominal algo:baselineForHTHisto.
+==Parsing started:
+           jetID is an NTUPLE variable for CMSNANO
+         jetPUid is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+ mvaFall17V2Iso_WP90 is an NTUPLE variable for CMSNANO
+  pfRelIso03_all is an NTUPLE variable for CMSNANO
+         tightId is an NTUPLE variable for CMSNANO
+  pfRelIso04_all is an NTUPLE variable for CMSNANO
+  Parsing finished.==
+We have 8 CutLang Cuts, 13 CutLang objects and 0 Bins
+TRGe:1  TRGm:0
+ => 1 BP_2
+	 REGION/ALGO:baselineForWHisto
+This is a run with name: nominal algo:baselineForWHisto.
+==Parsing started:
+           jetID is an NTUPLE variable for CMSNANO
+         jetPUid is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+ mvaFall17V2Iso_WP90 is an NTUPLE variable for CMSNANO
+  pfRelIso03_all is an NTUPLE variable for CMSNANO
+         tightId is an NTUPLE variable for CMSNANO
+  pfRelIso04_all is an NTUPLE variable for CMSNANO
+  Parsing finished.==
+We have 9 CutLang Cuts, 13 CutLang objects and 0 Bins
+TRGe:1  TRGm:0
+ => 2 BP_3
+	 REGION/ALGO:baseline
+This is a run with name: nominal algo:baseline.
+==Parsing started:
+           jetID is an NTUPLE variable for CMSNANO
+         jetPUid is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+ mvaFall17V2Iso_WP90 is an NTUPLE variable for CMSNANO
+  pfRelIso03_all is an NTUPLE variable for CMSNANO
+         tightId is an NTUPLE variable for CMSNANO
+  pfRelIso04_all is an NTUPLE variable for CMSNANO
+  Parsing finished.==
+We have 9 CutLang Cuts, 13 CutLang objects and 0 Bins
+TRGe:1  TRGm:0
+ => 3 BP_4
+	 REGION/ALGO:baselineHistos
+This is a run with name: nominal algo:baselineHistos.
+==Parsing started:
+           jetID is an NTUPLE variable for CMSNANO
+         jetPUid is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+ mvaFall17V2Iso_WP90 is an NTUPLE variable for CMSNANO
+  pfRelIso03_all is an NTUPLE variable for CMSNANO
+         tightId is an NTUPLE variable for CMSNANO
+  pfRelIso04_all is an NTUPLE variable for CMSNANO
+  Parsing finished.==
+We have 26 CutLang Cuts, 13 CutLang objects and 0 Bins
+TRGe:1  TRGm:0
+ => 4 BP_5
+	 REGION/ALGO:channelChi2
+This is a run with name: nominal algo:channelChi2.
+==Parsing started:
+           jetID is an NTUPLE variable for CMSNANO
+         jetPUid is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+   btagDeepFlavB is an NTUPLE variable for CMSNANO
+ mvaFall17V2Iso_WP90 is an NTUPLE variable for CMSNANO
+  pfRelIso03_all is an NTUPLE variable for CMSNANO
+         tightId is an NTUPLE variable for CMSNANO
+  pfRelIso04_all is an NTUPLE variable for CMSNANO
+  Parsing finished.==
+We have 32 CutLang Cuts, 13 CutLang objects and 0 Bins
+TRGe:1  TRGm:0
+ => 5 BP_6
+End of analysis initialization
+number of entries 330000
+starting entry 0
+Processing event 0
+Processing event 5000
+Processing event 10000
+Processing event 15000
+Processing event 20000
+Processing event 25000
+Processing event 30000
+Processing event 35000
+Processing event 40000
+Processing event 45000
+Processing event 50000
+Processing event 55000
+Processing event 60000
+Processing event 65000
+Processing event 70000
+Processing event 75000
+Processing event 80000
+Processing event 85000
+Processing event 90000
+Processing event 95000
+Processing event 100000
+Processing event 105000
+Processing event 110000
+Processing event 115000
+Processing event 120000
+Processing event 125000
+Processing event 130000
+Processing event 135000
+Processing event 140000
+Processing event 145000
+Processing event 150000
+Processing event 155000
+Processing event 160000
+Processing event 165000
+Processing event 170000
+Processing event 175000
+Processing event 180000
+Processing event 185000
+Processing event 190000
+Processing event 195000
+Processing event 200000
+Processing event 205000
+Processing event 210000
+Processing event 215000
+Processing event 220000
+Processing event 225000
+Processing event 230000
+Processing event 235000
+Processing event 240000
+Processing event 245000
+Processing event 250000
+Processing event 255000
+Processing event 260000
+Processing event 265000
+Processing event 270000
+Processing event 275000
+Processing event 280000
+Processing event 285000
+Processing event 290000
+Processing event 295000
+Processing event 300000
+Processing event 305000
+Processing event 310000
+Processing event 315000
+Processing event 320000
+Processing event 325000
+Efficiencies for analysis : BP_1
+						presel	Based on 330000 events:
+                                                               ALL :      1 +-         0 evt:   330000
+                                                   size(jets) >= 6 : 0.9995 +-  3.98e-05 evt:   329827
+                                                  size(bjets) >= 4 : 0.9434 +-  0.000402 evt:   311154
+                                                  pT(jets[5]) > 40 : 0.3757 +-  0.000868 evt:   116892
+                                                size(leptons) == 0 : 0.4814 +-   0.00146 evt:    56276
+					 --> Overall efficiency	 =   17.1 % +- 0.0655 %
+Bins for analysis : BP_1
+saving...	saved.
+BP_1 finalized.
+Efficiencies for analysis : BP_2
+						baselineForHTHisto	Based on 330000 events:
+                                                               ALL :      1 +-         0 evt:   330000
+                                                   size(jets) >= 6 : 0.9995 +-  3.98e-05 evt:   329827
+                                                  size(bjets) >= 4 : 0.9434 +-  0.000402 evt:   311154
+                                                  pT(jets[5]) > 40 : 0.3757 +-  0.000868 evt:   116892
+                                                size(leptons) == 0 : 0.4814 +-   0.00146 evt:    56276
+                                           [Histo] jetHTbeforeHTCu :      1 +-         0 evt:    56276
+                                                          HT > 500 : 0.9894 +-  0.000432 evt:    55679
+                                            [Histo] jetHTafterHTCu :      1 +-         0 evt:    55679
+					 --> Overall efficiency	 =   16.9 % +- 0.0652 %
+Bins for analysis : BP_2
+saving...	saved.
+BP_2 finalized.
+Efficiencies for analysis : BP_3
+						baselineForWHisto	Based on 330000 events:
+                                                               ALL :      1 +-         0 evt:   330000
+                                                   size(jets) >= 6 : 0.9995 +-  3.98e-05 evt:   329827
+                                                  size(bjets) >= 4 : 0.9434 +-  0.000402 evt:   311154
+                                                  pT(jets[5]) > 40 : 0.3757 +-  0.000868 evt:   116892
+                                                size(leptons) == 0 : 0.4814 +-   0.00146 evt:    56276
+                                                          HT > 500 : 0.9894 +-  0.000432 evt:    55679
+                                              size(lightjets) >= 2 : 0.9995 +-  9.16e-05 evt:    55653
+                                                 m(Wcand) ~= 80.37 :      1 +-         0 evt:    55653
+                                                    [Histo] hmWcan :      1 +-         0 evt:    55653
+					 --> Overall efficiency	 =   16.9 % +- 0.0652 %
+Bins for analysis : BP_3
+saving...	saved.
+BP_3 finalized.
+Efficiencies for analysis : BP_4
+						baseline	Based on 330000 events:
+                                                               ALL :      1 +-         0 evt:   330000
+                                                   size(jets) >= 6 : 0.9995 +-  3.98e-05 evt:   329827
+                                                  size(bjets) >= 4 : 0.9434 +-  0.000402 evt:   311154
+                                                  pT(jets[5]) > 40 : 0.3757 +-  0.000868 evt:   116892
+                                                size(leptons) == 0 : 0.4814 +-   0.00146 evt:    56276
+                                                          HT > 500 : 0.9894 +-  0.000432 evt:    55679
+                                              size(lightjets) >= 2 : 0.9995 +-  9.16e-05 evt:    55653
+                                                 m(Wcand) ~= 80.37 :      1 +-         0 evt:    55653
+                                                m(Wcand) [] 30 250 : 0.9887 +-  0.000448 evt:    55025
+					 --> Overall efficiency	 =   16.7 % +- 0.0649 %
+Bins for analysis : BP_4
+saving...	saved.
+BP_4 finalized.
+Efficiencies for analysis : BP_5
+						baselineHistos	Based on 330000 events:
+                                                               ALL :      1 +-         0 evt:   330000
+                                                   size(jets) >= 6 : 0.9995 +-  3.98e-05 evt:   329827
+                                                  size(bjets) >= 4 : 0.9434 +-  0.000402 evt:   311154
+                                                  pT(jets[5]) > 40 : 0.3757 +-  0.000868 evt:   116892
+                                                size(leptons) == 0 : 0.4814 +-   0.00146 evt:    56276
+                                                          HT > 500 : 0.9894 +-  0.000432 evt:    55679
+                                              size(lightjets) >= 2 : 0.9995 +-  9.16e-05 evt:    55653
+                                                 m(Wcand) ~= 80.37 :      1 +-         0 evt:    55653
+                                                m(Wcand) [] 30 250 : 0.9887 +-  0.000448 evt:    55025
+                                               [Histo] histo_njets :      1 +-         0 evt:    55025
+                                              [Histo] histo_nbjets :      1 +-         0 evt:    55025
+                                              [Histo] histo_nljets :      1 +-         0 evt:    55025
+                                                  [Histo] hjet01pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet02pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet03pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet04pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet05pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet06pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet01et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet02et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet03et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet04et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet05et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet06et :      1 +-         0 evt:    55025
+                                                      [Histo] jetH :      1 +-         0 evt:    55025
+                                                     [Histo] jetBH :      1 +-         0 evt:    55025
+					 --> Overall efficiency	 =   16.7 % +- 0.0649 %
+Bins for analysis : BP_5
+saving...	saved.
+BP_5 finalized.
+Efficiencies for analysis : BP_6
+						channelChi2	Based on 330000 events:
+                                                               ALL :      1 +-         0 evt:   330000
+                                                   size(jets) >= 6 : 0.9995 +-  3.98e-05 evt:   329827
+                                                  size(bjets) >= 4 : 0.9434 +-  0.000402 evt:   311154
+                                                  pT(jets[5]) > 40 : 0.3757 +-  0.000868 evt:   116892
+                                                size(leptons) == 0 : 0.4814 +-   0.00146 evt:    56276
+                                                          HT > 500 : 0.9894 +-  0.000432 evt:    55679
+                                              size(lightjets) >= 2 : 0.9995 +-  9.16e-05 evt:    55653
+                                                 m(Wcand) ~= 80.37 :      1 +-         0 evt:    55653
+                                                m(Wcand) [] 30 250 : 0.9887 +-  0.000448 evt:    55025
+                                                  size(bjets) >= 4 :      1 +-         0 evt:    55025
+                                                       chi2HH ~= 0 :      1 +-         0 evt:    55025
+                                               [Histo] histo_njets :      1 +-         0 evt:    55025
+                                              [Histo] histo_nbjets :      1 +-         0 evt:    55025
+                                              [Histo] histo_nljets :      1 +-         0 evt:    55025
+                                                  [Histo] hjet01pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet02pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet03pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet04pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet05pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet06pt :      1 +-         0 evt:    55025
+                                                  [Histo] hjet01et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet02et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet03et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet04et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet05et :      1 +-         0 evt:    55025
+                                                  [Histo] hjet06et :      1 +-         0 evt:    55025
+                                                      [Histo] jetH :      1 +-         0 evt:    55025
+                                                     [Histo] jetBH :      1 +-         0 evt:    55025
+                                                    [Histo] hchi2H :      1 +-         0 evt:    55025
+                                                    [Histo] hmH1cn :      1 +-         0 evt:    55025
+                                                    [Histo] hmH2cn :      1 +-         0 evt:    55025
+[Save] ttHHcsv csv pT(jets[0]) pT(jets[1]) pT(jets[2]) pT(jets[3]) :      1 +-         0 evt:    55025
+					 --> Overall efficiency	 =   16.7 % +- 0.0649 %
+Bins for analysis : BP_6
+saving...	saved.
+BP_6 finalized.
+finished.
+input file Closed.
+end CLA single. Output file:  histoOut-ttHH_had_v2_6.root

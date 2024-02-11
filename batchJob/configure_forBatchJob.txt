@@ -75,7 +75,7 @@ configure_for_batchJobOutputScaler{
                   (ttWZ, 0.002448 * 1000.0, 1.0, 350000, 41.48),\
                   (tttW, 0.0007337 * 1000.0, 1.0, 360000, 41.48),\
                   (tttt, 0.008091 * 1000.0, 1.0, 10351000, 41.48),\
-                  (ttTohadronic, 687.1 * 1000.0, 0.44, 513709770864, 41.48]
+                  (ttTohadronic, 687.1 * 1000.0, 0.44, 513709770864, 41.48)]
  
   scaleObj : /eos/user/j/junghyun/ttHH/ADL_result/240208/scaled                 
 }
