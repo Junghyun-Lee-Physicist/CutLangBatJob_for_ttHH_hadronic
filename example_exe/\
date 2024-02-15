@@ -72,6 +72,8 @@ define chi2HH = (mH1cnd - mH)^2 + (mH2cnd - mH)^2
 define chi2ZZ = (mZ1cnd - mZ)^2 + (mZ2cnd - mZ)^2
 define chi2ZH = (mHcnd - mH)^2 + (mZcnd - mZ)^2
 
+d
+
 # EVENT SELECTION
 region presel
   select ALL
@@ -111,7 +113,6 @@ region baselineHistos
   histo jetHT, "HT of jets", 40, 0, 2000, HT
   histo jetBHT, "HT of b-jets", 40, 0, 1200, BHT
   histo lightjetHT, "HT of light-jets", 40, 0, 1200, lightjetHT
-  
 
 region channelChi2HH
   baseline

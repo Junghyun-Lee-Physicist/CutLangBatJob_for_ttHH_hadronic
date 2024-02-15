@@ -1,0 +1,105 @@
+
+object jets
+  take jet
+  select pt(jet) > 30
+  select abs(eta(jet)) < 2.4
+  select jetID(jet) >= 6 ## Pass the tight lepton veto
+
+
+object bjets
+  take jets
+  select btagDeepFlavB(jets) > 0.3033
+
+
+
+object lightjets
+  take jets
+  select btagDeepFlavB(jets) <= 0.0521
+
+
+object electrons
+  take ele
+  select pt(ele) > 15
+  select abs(eta(ele)) < 2.4
+  select mvaFall17V2Iso_WP90(ele) == 1
+  select pfRelIso03_all(ele) < 0.1
+
+object muons
+  take muo
+  select pt(muo) > 15
+  select abs(eta(muo)) < 2.4
+  select tightId(muo) == 1
+  select pfRelIso04_all(muo) < 0.2
+
+
+define HT : fHT(jets)
+define BHT : fHT(bjets)
+define lightjetHT : fHT(lightjets)
+
+define Wcand : lightjets[-1] lightjets[-2]
+
+define mH = 125.35
+define mZ = 91.18
+define H1cnd = bjets[-1] bjets[-2]
+define H2cnd = bjets[-3] bjets[-4]
+define mH1cnd = m(H1cnd)
+define mH2cnd = m(H2cnd)
+define chi2HH = (mH1cnd - mH)^2 + (mH2cnd - mH)^2
+
+  ######
+  histo hjet01pt , "jet 01 pT (GeV)", 40, 0, 1000, pT(jets[0])
+  histo hjet02pt , "jet 02 pT (GeV)", 40, 0, 1000, pT(jets[1])
+  histo hjet03pt , "jet 03 pT (GeV)", 40, 0, 1000, pT(jets[2])
+  histo hjet04pt , "jet 04 pT (GeV)", 40, 0, 1000, pT(jets[3])
+  histo hjet05pt , "jet 05 pT (GeV)", 40, 0, 1000, pT(jets[4])
+  histo hjet06pt , "jet 06 pT (GeV)", 40, 0, 1000, pT(jets[5])
+  ######
+  histo hjet01eta, "jet 01 eta", 40, -3, 3, eta(jets[0])
+  histo hjet02eta, "jet 02 eta", 40, -3, 3, eta(jets[1])
+  histo hjet03eta, "jet 03 eta", 40, -3, 3, eta(jets[2])
+  histo hjet04eta, "jet 04 eta", 40, -3, 3, eta(jets[3])
+  histo hjet05eta, "jet 05 eta", 40, -3, 3, eta(jets[4])
+  histo hjet06eta, "jet 06 eta", 40, -3, 3, eta(jets[5])
+  ######
+  histo jetHT, "HT of jets", 40, 0, 2000, HT
+  histo jetBHT, "HT of b-jets", 40, 0, 1200, BHT
+
+
+region presel
+  select ALL
+  select size(jets) >= 6
+  select size(bjets) >= 4
+  ####select size(bjets_forZZreco) >= 2
+  ####select size(bjets_forZHreco) >= 2
+  select pT(jets[5]) > 40
+  select size(electrons) + size(muons) == 0
+
+region baseline
+  presel
+  select HT > 500
+  select size(lightjets) >= 2
+  select m(Wcand) ~= 80.37
+  select m(Wcand) [] 30 250
+
+region channelChi2
+  baseline
+  ##select size(bjets) >= 4
+  ####select size(bjets_forZZreco) >= 4
+  ####select size(bjets_forZHreco) >= 4
+  select chi2HH ~= 0
+  ####select chi2ZZ ~= 0
+  ####select chi2ZH ~= 0
+  ######
+  histo histo_njets , "number of selected jets after baseline sel" , 20, 0, 20, size(jets)
+  histo histo_nbjets , "number of selected b-jets after baseline sel" , 20, 0, 20, size(bjets)
+  histo histo_nljets , "number of light-jets after baseline sel", 20, 0, 20, size(lightjets)
+  ######
+  ####histo hchi2ZZ, "ZZ Chi2 dis closest to 0", 40, 0, 5000, chi2ZZ
+  ####histo hmZ1cnd, "Z1 Inv mass dis", 40, 0, 500, mZ1cnd
+  ####histo hmZ2cnd, "Z2 Inv mass dis", 40, 0, 500, mZ2cnd
+  ##########
+  ####histo hchi2ZH, "ZH Chi2 dis closest to 0", 40, 0, 5000, chi2ZH
+  ####histo hmHcnd, "higgs Inv mass dis", 40, 0, 500, mHcnd
+  ####histo hmZcnd, "Z Inv mass dis", 40, 0, 500, mZcnd
+
+  ##save ttHHcsv csv pT(jets[0]) pT(jets[1]) pT(jets[2]) pT(jets[3]) pT(jets[4]) pT(jets[5]) pT(jets[0]) pT(bjets[1]) pT(bjets[2]) pT(bjets[3]) Eta(jets[0]) Eta(jets[1]) Eta(jets[2]) Eta(jets[3]) Eta(jets[4]) Eta(jets[5]) Eta(jets[0]) Eta(bjets[1]) Eta(bjets[2]) Eta(bjets[3]) HT BHT chi2HH mH1cnd mH2cnd

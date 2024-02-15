@@ -5,11 +5,11 @@
 
 configure_for_batchJob{
 
-  JobID : 240208 # Whatever ID you want
+  JobID : 240214 # Whatever ID you want
   CutLang_path : /afs/cern.ch/user/j/junghyun/ttHH_analysis/test/CMSSW_12_6_5/src/CutLang
   SampleType : CMSNANO # classfy sample's type
   CutLangExeScriptName : CLA1
-  ADLScriptName : ttHH_had_v2_6
+  ADLScriptName : ttHH_had_v3
 
   ChannelNames  : [ ttHH, ttZHto4b, ttZZto4b, tt4b, ttHtobb, ttZtobb,\
                     ttWW, ttWH, ttWZ, tttW, tttt,\
@@ -36,7 +36,7 @@ configure_for_batchJob{
 
 configure_for_batchJobOutputMerger{
 
-  output_path : /eos/user/j/junghyun/ttHH/ADL_result/240208/
+  output_path : /eos/user/j/junghyun/ttHH/ADL_result/240214/
   # Normally output path will be the <EOS_Storage_Path>/<JobID>/ 
 
   ChannelNames  : [ ttHH, ttZHto4b, ttZZto4b, tt4b, ttHtobb, ttZtobb,\
@@ -47,13 +47,13 @@ configure_for_batchJobOutputMerger{
                     QCD_HT1000to1500, QCD_HT1500to2000, QCD_HT2000toInf ]
   # Normally channel names will be same with batch job's channels
 
-  mergerObj : /eos/user/j/junghyun/ttHH/ADL_result/240208/merged
+  mergerObj : /eos/user/j/junghyun/ttHH/ADL_result/240214/merged
   # Normally mergerObj will be the <output_path>/merged
 }
 
 configure_for_batchJobOutputScaler{
  
-  mergerObj : /eos/user/j/junghyun/ttHH/ADL_result/240208/merged
+  mergerObj : /eos/user/j/junghyun/ttHH/ADL_result/240214/merged
   # Nobermally mergerObj might be the same with sample merger's object directory
 
                  # process, xs [fb], BR, num of evt, integrated luminosity [fb^-1]
@@ -77,7 +77,7 @@ configure_for_batchJobOutputScaler{
                   (tttt, 0.008091 * 1000.0, 1.0, 10351000, 41.48),\
                   (ttTohadronic, 687.1 * 1000.0, 0.44, 513709770864, 41.48)]
  
-  scaleObj : /eos/user/j/junghyun/ttHH/ADL_result/240208/scaled                 
+  scaleObj : /eos/user/j/junghyun/ttHH/ADL_result/240214/scaled                 
 }
                   ##(QCD_HT50to100,    187700000.0 *1000.0, 1.0, 39819368, 41.48),\
                   ##(QCD_HT100to200,   23500000.0  *1000.0, 1.0, 80534025, 41.48),\

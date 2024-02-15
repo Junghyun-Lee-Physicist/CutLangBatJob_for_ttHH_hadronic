@@ -11,7 +11,7 @@ SamplePath="root://xrootd-cms.infn.it///store/mc/RunIISummer20UL17NanoAODv9/TTHH
 CutLangPath="/afs/cern.ch/user/j/junghyun/ttHH_analysis/test/CMSSW_12_6_5/src/CutLang"
 runsPath="${CutLangPath}/runs"
 
-scriptName="ttHH_had_v2_6.adl"
+scriptName="ttHH_had_v3.adl"
 cp ../script_forRunCL/"${scriptName}" ../script_forRunCL/CLA1.sh ${runsPath}
 
 "${runsPath}/CLA1.sh" "$SamplePath" CMSNANO -i "${runsPath}/${scriptName}" -e 1000

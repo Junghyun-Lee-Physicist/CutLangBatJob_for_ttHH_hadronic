@@ -17,14 +17,32 @@ def main():
 
 def trim_cutflow_Xlables(oldCutflow):
     # Extract bin labels, contents, and errors from the original histogram into a list.
-    bins_data = [{
-        'label' : oldCutflow.GetXaxis().GetBinLabel(bin),
-        'content' : oldCutflow.GetBinContent(bin),
-        'error' : oldCutflow.GetBinError(bin)
-        }for bin in range(1, oldCutflow.GetNbinsX() + 1)]
+
+    want_to_replace_label_inCutflowbins = {
+        'size(jets) >= 6' : '# of jets >= 6',
+        'size(bjets) >= 4' : '# of b-jets >= 4',
+        'pT(jets[5]) > 40' : '6th jets pT > 40',
+        'size(electrons) + size(muons) == 0' : 'leptons veto',
+        'size(lightjets) >= 2' : '# of light jets >= 2',
+        'm(Wcand) [] 30 250' : '30 < reco W mass < 250'
+    }
+
+    bins_data = []
+    for bin in range(1, oldCutflow.GetNbinsX() + 1):
+        label = oldCutflow.GetXaxis().GetBinLabel(bin)
+        # Check the replace label if it matches any [ want_to_replace_label_inCutflowbins ]
+        for old_label, new_label in want_to_replace_label_inCutflowbins.items():
+            if old_label in label:
+                label = label.replace(old_label, new_label)
+                break
+        bins_data.append({
+            'label' : label,
+            'content' : oldCutflow.GetBinContent(bin),
+            'error' : oldCutflow.GetBinError(bin)
+        })
 
     # Filter out the bins that contain labels to be removed.
-    unwanted_phrase_inCutflowbins = ["ALL", "Histo", "Save"]
+    unwanted_phrase_inCutflowbins = ["ALL", "Histo", "Save", "~"]
     filtered_bins_data = [
             bin_data for bin_data in bins_data
             if not any(phrase in bin_data['label'] for phrase in unwanted_phrase_inCutflowbins)
