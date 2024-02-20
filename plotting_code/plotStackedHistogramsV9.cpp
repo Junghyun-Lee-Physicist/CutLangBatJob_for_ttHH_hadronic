@@ -16,6 +16,9 @@
 #include <map>
 #include <algorithm>
 
+#include <TRatioPlot.h>
+#include <TGaxis.h>
+
 using namespace std;
 
 struct ProcessInfo {
@@ -45,22 +48,34 @@ void setLegendSetting(TLegend* histoLegend){
 
 }
 
-void setLatexSetting(TLatex histoLatex){
+void setLatexSetting(TLatex histoLatex, string histo_title){
  
     // Adding CMS private work text
     histoLatex.SetNDC();
-    histoLatex.SetTextSize(0.04);
+    histoLatex.SetTextSize(0.05);
     histoLatex.SetTextAlign(11);
-    histoLatex.DrawLatex(0.1, 0.94, "CMS #scale[0.5]{#font[52]{Private Work}}");
+    histoLatex.DrawLatex(0.1, 0.94, "CMS #scale[0.85]{#font[52]{Private Work}}");
 
     // Adding the year and luminosity
     histoLatex.SetTextSize(0.04);
     histoLatex.SetTextAlign(31); // Align to the right
-    histoLatex.DrawLatex(0.9, 0.94, "41.5 fb^{-1} [13 TeV]");
+    histoLatex.DrawLatex(0.9, 0.945, "2017 year, 41.5 fb^{-1} [13 TeV]");
+
+    histoLatex.SetTextSize(0.04);
+    histoLatex.SetTextAlign(11);
+    string title = "[ " + histo_title + " ]";
+    histoLatex.DrawLatex(0.13, 0.89, title.c_str());
 
 }
 
-TGraphAsymmErrors* CreateRatioPlot(TH1* signal, THStack* background){
+TGraphAsymmErrors* CreateRatioPlot(TH1* signal, THStack* background, const HistogramSetting& setting){
+
+    auto First_Stacked_histo = (TH1*)background->GetHists()->First();
+    double xAxisRange_low  = First_Stacked_histo->GetXaxis()->GetXmin();
+    double xAxisRange_high = First_Stacked_histo->GetXaxis()->GetXmax();
+
+    double maxVal = -std::numeric_limits<double>::max();
+    double minVal = std::numeric_limits<double>::max();
 
     TGraphAsymmErrors* grRatio = new TGraphAsymmErrors();
 
@@ -86,18 +101,68 @@ TGraphAsymmErrors* CreateRatioPlot(TH1* signal, THStack* background){
 	// the x value is the center value of the bin
 	double x = signal->GetBinCenter(i);
 
-	if(B > 0) {
+	if(B > 0 && S > 0) {
 	    // Calculate Ratio R & it's errors
 	    double R = S / B;
 	    double errorLow = R * sqrt(pow(sigma_S/S, 2) + pow(sigma_B/B, 2));
 	    double errorHigh = errorLow;
 
 	    int iPoint = grRatio->GetN();
-	    grRatio->SetPoint(iPoint, x, R);
-	    grRatio->SetPointError(iPoint, 0.0, 0.0, errorLow, errorHigh);
+            grRatio->SetPoint(iPoint, x, R);
+            grRatio->SetPointError(iPoint, 0.0, 0.0, errorLow, errorHigh);
+            maxVal = std::max(maxVal, R + errorHigh);
+	    minVal = std::min(minVal, R - errorLow);
 	}
 
     } // End of signal iteration
+
+
+    if(setting.typeOfHisto == "cutflow"){
+    //Set of Cutflow
+	const int nBins = First_Stacked_histo->GetNbinsX();
+	grRatio->GetXaxis()->Set(nBins, xAxisRange_low, xAxisRange_high);
+        for(int i = 1; i<= nBins; ++i) {
+            const char* label = First_Stacked_histo->GetXaxis()->GetBinLabel(i);
+            grRatio->GetXaxis()->SetBinLabel(i, label);
+	}
+
+        grRatio->GetXaxis()->LabelsOption("u"); // draw labels up (end of label right adjusted)
+        //grRatio->GetXaxis()->LabelsOption("d"); // draw labels down (start of label left adjusted)
+        //grRatio->GetXaxis()->LabelsOption("h"); // draw horizontal axis labels
+        //grRatio->GetXaxis()->LabelsOption("v"); // draw vertical axis labels
+
+        grRatio->GetXaxis()->SetLabelSize( 0.12 );
+        grRatio->GetXaxis()->SetLabelOffset( 0.02 );
+
+	grRatio->GetYaxis()->SetTitle( "#bf{Ratio of [ #it{Sig / Bkg} ]}" );
+        grRatio->GetYaxis()->SetTitleOffset( 0.5 );
+    }
+    else{
+    // Set of other histograms
+        grRatio->GetXaxis()->SetLimits( xAxisRange_low, xAxisRange_high );
+        grRatio->GetXaxis()->SetLabelSize( 0.08 );
+
+	grRatio->GetYaxis()->SetTitle( "#bf{Ratio of [ #it{Sig / Bkg} ]}" );
+        grRatio->GetYaxis()->SetTitleOffset( 0.7 );
+    }
+	
+    grRatio->GetXaxis()->SetTitle( (setting.xAxisTitle).c_str() );
+    grRatio->GetXaxis()->SetTitleSize( 0.085 );
+
+    double padding = 0.1 * (maxVal - minVal);
+    grRatio->GetYaxis()->SetRangeUser( minVal - padding, maxVal + padding);
+    //grRatio->GetYaxis()->SetRangeUser( 0.0, 0.1 * 1e-3);
+    grRatio->GetYaxis()->SetLabelSize( 0.08 );
+    grRatio->GetYaxis()->SetTitleSize( 0.07 );
+    grRatio->GetYaxis()->SetNdivisions(505);
+    grRatio->GetYaxis()->SetMaxDigits(2);
+
+    grRatio->SetLineWidth(4);
+    grRatio->SetLineColor(kBlue+2);
+    grRatio->SetMarkerStyle(20);
+    grRatio->SetMarkerSize(1);
+    grRatio->SetMarkerColor(kBlue);
+    grRatio->SetLineWidth(2);
 
     return grRatio;
 
@@ -109,7 +174,7 @@ void DrawStackedHistograms(const vector<pair<TH1*, ProcessInfo>>& histograms, co
  
     double maxY = 0;
     THStack* stack = new THStack("stack", "");
-    TLegend* legend = new TLegend(0.5, 0.7, 0.99, 0.99);
+    TLegend* legend = new TLegend(0.5, 0.7, 0.905, 0.93);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
 // For background processes' histogram
@@ -171,14 +236,14 @@ void DrawStackedHistograms(const vector<pair<TH1*, ProcessInfo>>& histograms, co
             if(std::string(signalHist->GetName()) == "cutflow") {
                 // Setting for background histograms
                 maxY = max(maxY, signalHist->GetMaximum());
-                signalHist->SetLineWidth(3);
+                signalHist->SetLineWidth(4);
                 signalHist->SetFillStyle(0);
                 signalHist->SetFillColor(histPair.second.color);
                 legend->AddEntry(signalHist, histPair.second.legendName.c_str(), "f"); 
             }
             else{
                 maxY = max(maxY, signalHist->GetMaximum());
-	        signalHist->SetLineWidth(3);
+	        signalHist->SetLineWidth(4);
                 signalHist->SetFillStyle(0);
                 signalHist->SetFillColor(histPair.second.color);
                 legend->AddEntry(signalHist, histPair.second.legendName.c_str(), "f");
@@ -204,16 +269,16 @@ void DrawStackedHistograms(const vector<pair<TH1*, ProcessInfo>>& histograms, co
     }
 
     // Making upper pad
-    TPad* upperPad = new TPad("upperPad", "Upper Pad", 0.0, 0.3, 1.0, 1.0);
-    TPad* lowerPad = new TPad("lowerPad", "Lower Pad", 0.0, 0.0, 1.0, 0.3);
+    TPad* upperPad = new TPad("upperPad", "Upper Pad", 0.0, 0.30, 1.0, 1.0);
+    TPad* lowerPad = new TPad("lowerPad", "Lower Pad", 0.0, 0.0, 1.0, 0.30);
 
     // Set the canvas and pad's margin
-    canvas->SetRightMargin(0.05);
+    canvas->SetRightMargin(0.02);
     canvas->SetLeftMargin(0.12);
-    upperPad->SetTopMargin(0.07);
+    upperPad->SetTopMargin(0.065);
     upperPad->SetBottomMargin(0.02);
-    lowerPad->SetTopMargin(0);
-    lowerPad->SetBottomMargin(0.1);
+    lowerPad->SetTopMargin(0.080);
+    lowerPad->SetBottomMargin(0.35);
 
     // Draw pads in the canvas
     upperPad->Draw();
@@ -226,14 +291,14 @@ void DrawStackedHistograms(const vector<pair<TH1*, ProcessInfo>>& histograms, co
     stack->Draw("HIST");
     //stack->Draw("nostackb");
     stack->GetXaxis()->SetTitle(setting.xAxisTitle.c_str());
-    stack->GetYaxis()->SetTitle("Events / bin");
-    stack->SetMaximum(maxY * 1.2);
+    stack->GetYaxis()->SetTitle("#bf{# of Events / bin}");
+    stack->SetMaximum(maxY * 2.0);
     stack->SetMinimum(1e-4); 
+    stack->GetXaxis()->SetLabelSize(0);
     canvas->Update();
 
     signalHist->Draw("HISTsame");
-    signalHist->SetTitle(setting.title.c_str());
-    signalHist->GetYaxis()->SetRangeUser(1e-2, maxY * 2.0); 
+    //signalHist->GetYaxis()->SetRangeUser(1e-2, maxY * 2.0); 
     //signalHist->SetMaximum(maxY * 1.2); 
     upperPad->SetLogy(1);
     upperPad->Update();
@@ -244,34 +309,22 @@ void DrawStackedHistograms(const vector<pair<TH1*, ProcessInfo>>& histograms, co
     setLegendSetting(legend);
     legend->Draw("same");
     TLatex latex;
-    setLatexSetting(latex);
+    setLatexSetting(latex, setting.title.c_str());
     upperPad->Update();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
 // Lower pad draw setting
 
     lowerPad->cd();
+    lowerPad->SetGrid(1,1);
+    lowerPad->SetTickx(1);
 
-    auto* grRatio = CreateRatioPlot(signalHist, stack);
-    grRatio->Draw("AP");
-    lowerPad->Update();
-    //gPad->Update();
-    grRatio->SetLineWidth(2);
-    grRatio->SetLineColor(kBlue+1);
-    grRatio->SetMarkerStyle(21);
-    grRatio->SetMarkerColor(kBlue);
-    //Eff->GetXaxis()->SetTitle("X-axis title");
-    //Eff->GetYaxis()->SetTitle("Efficiency");
-
-    //Eff->SetMinimum(0); // 예를 들어, 최소값을 0으로 설정
-    //Eff->SetMaximum(1); // 최대값을 1로 설정 (효율은 0과 1 사이의 값)
+    auto* grRatio = CreateRatioPlot(signalHist, stack, setting);
     grRatio->Draw("AP");
 
     lowerPad->Update();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
-
-
     string saveName = savePath + "/" + histName + "_" + setting.saveName + plotExtension;
     canvas->SaveAs(saveName.c_str());
 
@@ -364,7 +417,7 @@ int main() {
 
 
         {"QCD", {"QCD.root", false, kRed, "QCD"}},
-	{"ttHH", {"ttHH.root", true, 0, "ttHH"}},
+	{"ttHH", {"ttHH.root", true, kBlack, "ttHH"}},
 
 	{"ttZZto4b", {"ttZZto4b.root", false, 46, "ttZZto4b"}},
 	{"ttZHto4b", {"ttZHto4b.root", false, 30, "ttZHto4b"}},
@@ -387,52 +440,52 @@ int main() {
 
         {"presel", 
 	    {
-                {"cutflow", "cutflow of pre-selection", "", "cutflow"}
+                {"cutflow", "Cut-flow of pre-selection", "", "cutflow"}
 	    }
 	},
         {"baselineHistos", 
             {
-                {"histo_njets"    , "number of jets"               , "# of jets"       , "nOfJets"},
-                {"histo_nbjets"   , "number of b-jets"             , "# of b-jets"     , "nOfBjets"},
-                {"histo_nljets"   , "number of light-jets"         , "# of light-jets" , "nOfLjets"},
-                {"hjet01pt"       , "1st jet pT"                   , "pT [GeV]"        , "Jet01pT"},
-                {"hjet02pt"       , "2nd jet pT"                   , "pT [GeV]"        , "Jet02pT"},
-                {"hjet03pt"       , "3rd jet pT"                   , "pT [GeV]"        , "Jet03pT"},
-                {"hjet04pt"       , "4th jet pT"                   , "pT [GeV]"        , "Jet04pT"},
-                {"hjet05pt"       , "5th jet pT"                   , "pT [GeV]"        , "Jet05pT"},
-                {"hjet06pt"       , "6th jet pT"                   , "pT [GeV]"        , "Jet06pT"},
-                {"hjet01eta"      , "1st jet #eta"                 , "#eta"            , "Jet01eta"},
-                {"hjet02eta"      , "2nd jet #eta"                 , "#eta"            , "Jet02eta"},
-                {"hjet03eta"      , "3rd jet #eta"                 , "#eta"            , "Jet03eta"},
-                {"hjet04eta"      , "4th jet #eta"                 , "#eta"            , "Jet04eta"},
-                {"hjet05eta"      , "5th jet #eta"                 , "#eta"            , "Jet05eta"},
-                {"hjet06eta"      , "6th jet #eta"                 , "#eta"            , "Jet06eta"},
-                {"jetHT"          , "jets HT"                      , "HT [GeV]"        , "JetHT"},
-                {"jetBHT"         , "b-jets HT"                    , "HT [GeV]"        , "BJetHT"},
-                {"lightjetHT"     , "light jets HT"                , "HT [GeV]"        , "LJetHT"},
-                {"cutflow"        , "cutflow of baseline selection", ""                , "cutflow"}
+                {"histo_njets"    , "# of jets"                     , "# of jets"       , "nOfJets"},
+                {"histo_nbjets"   , "# of b-jets"                   , "# of b-jets"     , "nOfBjets"},
+                {"histo_nljets"   , "# of light-jets"               , "# of light-jets" , "nOfLjets"},
+                {"hjet01pt"       , "1#scale[0.8]{st} jet pT"       , "pT [GeV]"        , "Jet01pT"},
+                {"hjet02pt"       , "2#scale[0.8]{nd} jet pT"       , "pT [GeV]"        , "Jet02pT"},
+                {"hjet03pt"       , "3#scale[0.8]{rd} jet pT"       , "pT [GeV]"        , "Jet03pT"},
+                {"hjet04pt"       , "4#scale[0.8]{th} jet pT"       , "pT [GeV]"        , "Jet04pT"},
+                {"hjet05pt"       , "5#scale[0.8]{th} jet pT"       , "pT [GeV]"        , "Jet05pT"},
+                {"hjet06pt"       , "6#scale[0.8]{th} jet pT"       , "pT [GeV]"        , "Jet06pT"},
+                {"hjet01eta"      , "1#scale[0.8]{st} jet #eta"     , "#eta"            , "Jet01eta"},
+                {"hjet02eta"      , "2#scale[0.8]{nd} jet #eta"     , "#eta"            , "Jet02eta"},
+                {"hjet03eta"      , "3#scale[0.8]{rd} jet #eta"     , "#eta"            , "Jet03eta"},
+                {"hjet04eta"      , "4#scale[0.8]{th} jet #eta"     , "#eta"            , "Jet04eta"},
+                {"hjet05eta"      , "5#scale[0.8]{th} jet #eta"     , "#eta"            , "Jet05eta"},
+                {"hjet06eta"      , "6#scale[0.8]{th} jet #eta"     , "#eta"            , "Jet06eta"},
+                {"jetHT"          , "Jets HT"                       , "HT [GeV]"        , "JetHT"},
+                {"jetBHT"         , "B-jets HT"                     , "HT [GeV]"        , "BJetHT"},
+                {"lightjetHT"     , "Light jets HT"                 , "HT [GeV]"        , "LJetHT"},
+                {"cutflow"        , "Cut-flow of baseline selection" , ""                , "cutflow"}
             }
 	},
         {"channelChi2HH", 
             {
-                {"hchi2HH"        , "Reconstructed Higgs pair #chi^{2}", "#chi^{2}"            , "ChiSqrHH"},
-                {"hmH1cnd"        , "mass of 1st higgs candidate"      , "invariant mass [GeV]", "H01Mass"},
-                {"hmH2cnd"        , "mass of 2nd higgs candidate"      , "invariant mass [GeV]", "H02Mass"},
+                {"hchi2HH"        , "Reco Higgs pair #chi^{2}"             , "#chi^{2}"             , "ChiSqrHH"},
+                {"hmH1cnd"        , "Mass of 1#scale[0.8]{st} higgs cand"  , "invariant mass [GeV]" , "H01Mass"},
+                {"hmH2cnd"        , "Mass of 2#scale[0.8]{nd} higgs cand"  , "invariant mass [GeV]" , "H02Mass"},
             }
 	},
         {"channelChi2ZZ", 
             {
-                {"hchi2ZZ"        , "Reconstructed Z pair #chi^{2}", "#chi^{2}"                , "ChiSqrZZ"},
-                {"hmZ1cnd"        , "mass of 1st Z candidate", "invariant mass [GeV]"          , "Z01Mass"},
-                {"hmZ2cnd"        , "mass of 2nd Z candidate", "invariant mass [GeV]"          , "Z02Mass"},
+                {"hchi2ZZ"        , "Reco Z pair #chi^{2}"             , "#chi^{2}"             , "ChiSqrZZ"},
+                {"hmZ1cnd"        , "Mass of 1#scale[0.8]{st} Z cand"  , "invariant mass [GeV]" , "Z01Mass"},
+                {"hmZ2cnd"        , "Mass of 2#scale[0.8]{nd} Z cand"  , "invariant mass [GeV]" , "Z02Mass"},
 
             }
 	},
         {"channelChi2ZH", 
             {
-                {"hchi2ZH"       , "Reconstructed Z pair #chi^{2}", "#chi^{2}"                 , "ChiSqrZH"},
-                {"hmHcnd"        , "mass of H candidate", "invariant mass [GeV]"               , "HMass"},
-                {"hmZcnd"        , "mass of Z candidate", "invariant mass [GeV]"               , "ZMass"},
+                {"hchi2ZH"       , "Reco ZH #chi^{2}", "#chi^{2}"             , "ChiSqrZH"},
+                {"hmHcnd"        , "Mass of H cand"  , "invariant mass [GeV]" , "HMass"},
+                {"hmZcnd"        , "Mass of Z cand"  , "invariant mass [GeV]" , "ZMass"},
 
             }
 	}
